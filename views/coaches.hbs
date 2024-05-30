@@ -1,0 +1,129 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Coaches</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- 
+Citation for the following function:
+   Date: 3/06/24
+   Adapted from starter code provided by Dr. Curry and Prof. Safonte at Oregon State University
+   Starter code used as a template with variables changed to meet our use case.  Some functions/routes were added/removed for functionality.
+   Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Coaches</h2>
+<table border="3" cellpadding="20" id="coaches-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            {{!-- For just the first row, we print each key of the row object as a header cell
+            so we know what each column means when the page renders --}}
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the playerID, playerName, jerseyNum, height, weight, position, and score, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>
+            <td>{{this.coachID}}</td>
+            <td>{{this.coachName}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.numOfYearCoaching}}</td>
+            <td><button onclick="deleteCoach({{this.coachID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_coach.js"></script>
+
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-coach-form-ajax">
+        <legend>Add Coach</legend>
+        <fieldset>
+            <label for="input-coachName">Coach Name: *</label>
+            <input type="text" placeholder="Coach Name" name="input-coachName" id="input-coachName" required>
+            
+            <label for="input-title">Title: *</label>
+            <input type="text" placeholder="Coach Title" name="input-title" id="input-title" required>
+
+            <label for="input-numOfYearCoaching">Years of experience coaching: *</label>
+            <input type="int" placeholder="Years coaching" name="input-numOfYearCoaching" id="input-numOfYearCoaching" required>
+
+        </fieldset>
+        <input type="submit" value="Add Coach">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_coach.js"></script>
+
+<div id="Buttons">
+    <form id="edit-coach-form-ajax">
+        <legend>Edit Coach</legend>
+        <fieldset>
+            <label for="edit-input-oldCoachName">Current Coach Name: *</label>
+            <input type="text" name="edit-input-oldCoachName" id="edit-input-oldCoachName" placeholder="Current Coach Name" required>
+
+            <label for="edit-input-coachName">Coach Name: *</label>
+            <input type="text" placeholder="Coach Name" name="edit-input-coachName" id="edit-input-coachName" required>
+            
+            <label for="edit-input-title">Title: *</label>
+            <input type="text" placeholder="Coach Title" name="edit-input-title" id="edit-input-title" required>
+
+            <label for="edit-input-numOfYearCoaching">Years of experience coaching: </label>
+            <input type="int" placeholder="Years coaching" name="edit-input-numOfYearCoaching" id="edit-input-numOfYearCoaching" required>
+
+        </fieldset>
+        <input type="submit" value="Edit Coach">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+<div id="Buttons">
+    <form id="search-coaches-html" method='GET' action='/coaches'>
+        <legend>Search by Coach Name: </legend>
+        <input type="text" placeholder="Coach Name" name="coachName" id="input-coachName-html-search">
+
+        <input type = "submit">
+        <a href="/coaches"><button>Reset Page</button></a>
+    </form>
+</div>
+</div>
+<script src="./js/edit_coach.js"></script>
+
+</body>
+</html>

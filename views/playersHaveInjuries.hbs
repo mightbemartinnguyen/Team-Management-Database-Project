@@ -1,0 +1,88 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Players have Injuries</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Players have Injuries</h2>
+<table border="3" cellpadding="20" id="playersHaveInjuries-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            <th>Player ID</th>
+            <th>Player Name</th> <!-- Added -->
+            <th>Injury ID</th>
+            <th>Injury Name</th> <!-- Added -->
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+    {{#each data}}
+    <tr data-value={{this.id}}>
+        <td>{{this.playerID}}</td>
+        <td>{{this.playerName}}</td>
+        <td>{{this.injuryID}}</td>
+        <td>{{this.injuryName}}</td>
+        <td><button onclick="deletePlayersHaveInjuries({{this.playerID}},{{this.injuryID}})">Delete</button></td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+<script src="./js/delete_playersHaveInjuries.js"></script>
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-playersHaveInjuries-form-ajax">
+        <legend>Add Injury to Player</legend>
+        <fieldset>
+            <label for="input-playersHaveInjuries-playerID">Player Name: *</label>
+            <input type="text" placeholder="Player Name" name="input-playersHaveInjuries-playerID" id="input-playersHaveInjuries-playerID" required>
+            
+            <label for="input-playersHaveInjuries-injuryID">Injury Name: *</label>
+            <input type="text" placeholder="Injury Name" name="input-playersHaveInjuries-injuryID" id="input-playersHaveInjuries-injuryID" required>
+
+        </fieldset>
+        <input type="submit" value="Add Injury to Player">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+<script src="./js/add_playersHaveInjuries.js"></script>
+<div class="button-gallery">
+
+    <div id="Buttons">
+    <form id="search-players-injuries-html" method='GET' action='/playersHaveInjuries'>
+        <legend>Search by Player/Injury Name: </legend>
+        <input type="text" placeholder="Injury Name" name="injuryName" id="input-players-injuries-search">
+        <input type="text" placeholder="Player Name" name="playerName" id="input-players-injuries-search">
+        <input type = "submit">
+        <a href="/playersHaveInjuries"><button>Reset Page</button></a>
+    </form>
+</div>
+</div>

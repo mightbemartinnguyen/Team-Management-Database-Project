@@ -1,0 +1,113 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Players have Coaches</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Players have Coaches</h2>
+<table border="3" cellpadding="20" id="playersHaveCoaches-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            <th>Player ID</th>
+            <th>Player Name</th> <!-- Added -->
+            <th>Coach ID</th>
+            <th>Coach Name</th> <!-- Added -->
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+<tbody>
+    {{#each data}}
+    <tr data-value={{this.id}}>
+        <td>{{this.playerID}}</td>
+        <td>{{this.playerName}}</td>
+        <td>{{this.coachID}}</td>
+        <td>{{this.coachName}}</td>
+        <td><button onclick="deletePlayersHaveCoaches({{this.playerID}},{{this.coachID}})">Delete</button></td>
+    </tr>
+    {{/each}}
+</tbody>
+</table>
+<script src="./js/delete_playersHaveCoaches.js"></script>
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-playersHaveCoaches-form-ajax">
+        <legend>Add Coach to Player</legend>
+        <fieldset>
+            <label for="input-playersHaveCoaches-playerID">Player Name: *</label>
+            <input type="text" placeholder="Player Name" name="input-playersHaveCoaches-playerID" id="input-playersHaveCoaches-playerID" required>
+            
+            <label for="input-playersHaveCoaches-coachID">Coach Name: *</label>
+            <input type="text" placeholder="Coach Name" name="input-playersHaveCoaches-coachID" id="input-playersHaveCoaches-coachID" required>
+
+        </fieldset>
+        <input type="submit" value="Add Coach to Player">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+<script src="./js/add_playersHaveCoaches.js"></script>
+
+<div id="Buttons">
+    <form id="edit-playersHaveCoaches-form-ajax">
+        <legend>Edit Player Coach</legend>
+        <fieldset>
+            <label for="edit-playersHaveCoaches-currplayerID">Curr Player Name: *</label>
+            <input type="text" placeholder="Player Name" name="edit-input-playersHaveCoaches-currplayerID" id="edit-playersHaveCoaches-currplayerID" required>
+            
+            <label for="edit-playersHaveCoaches-playerID">Player Name:</label>
+            <input type="text" placeholder="Player Name" name="edit-input-playersHaveCoaches-playerID" id="edit-playersHaveCoaches-playerID">
+
+            <label for="edit-playersHaveCoaches-currcoachID">Curr Coach Name: *</label>
+            <input type="text" placeholder="Coach Name" name="edit-input-playersHaveCoaches-currcoachID" id="edit-playersHaveCoaches-currcoachID"required>
+            
+            <label for="edit-playersHaveCoaches-coachID">Coach Name:</label>
+            <input type="text" placeholder="Coach Name" name="edit-input-playersHaveCoaches-coachID" id="edit-playersHaveCoaches-coachID">
+
+        </fieldset>
+        <input type="submit" value="Edit Player Coach">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+<script src="./js/edit_playersHaveCoaches.js"></script>
+
+<div id="Buttons">
+    <form id="search-players-coaches-html" method='GET' action='/playersHaveCoaches'>
+        <legend>Search by Player/Coach Name: </legend>
+        <input type="text" placeholder="Coach Name" name="coachName" id="input-players-coaches-search">
+        <input type="text" placeholder="Player Name" name="playerName" id="input-players-coaches-search">
+        <input type = "submit">
+        <a href="/playersHaveCoaches"><button>Reset Page</button></a>
+    </form>
+</div>
+
+</div>

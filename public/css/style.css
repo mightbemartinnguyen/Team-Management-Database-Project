@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300&family=Playfair+Display:ital,wght@1,700&display=swap');
+
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-color: rgb(220, 68, 5);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Chivo', sans-serif;
+}
+
+main {
+    background-color: rgb(220, 68, 5);
+    margin: 0.0008%;
+    padding: 0.2%;
+    flex: 1;
+}
+
+header {
+    background-color: #3B0918;
+    color: #FFF3D9;
+    padding: 0%;
+    text-align: center;
+    border: 3px solid #3B0918;
+}
+
+article {
+    border: 30px red;
+    margin: 5% auto;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #FFF3D9;
+    max-width: 1000px;
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+    padding: 1%;
+}
+
+nav a {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #F7BEC0;
+    color: #000000;
+    margin: 5px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0.7%;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: rgb(26, 255, 0);
+}
+
+div {
+    margin: 2%;
+    padding-bottom: 3%;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h2.browse {
+    text-align: left;
+    font-size: 30px;
+    color: #FFF3D9;
+}
+
+p {
+    text-indent: 2em;
+}
+
+table th, 
+table td{
+    text-align: center;
+}
+
+table th {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+table {
+    background-color: #FFF3D9;
+    width: 62%;
+    font-size: 15px;
+}
+
+#Buttons {
+    width: 400px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    float: left;
+    background-color: #FFF3D9;
+}
+
+#Buttons form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#Buttons form fieldset {
+    border: none;
+    padding: 0;
+    font-size: 18px;
+}
+
+#Buttons form label {
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+#Buttons form input {
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+
+#Buttons form legend {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Base styles for both submit and reset buttons */
+#Buttons input[type="submit"],
+#Buttons input[type="reset"] {
+    background-color: rgb(220, 68, 5);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+#Buttons button{
+    text-decoration: none;
+    display: block;
+    background-color: rgb(220, 68, 5);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    width:100%;
+}
+
+#Buttons input[type="submit"]:hover,
+#Buttons input[type="reset"]:hover {
+    background-color: #45a049; /* Darker shade of green on hover for feedback */
+}
+
+#Buttons button:hover{
+    background-color: #45a049;
+    text-decoration: none;
+}
+
+.button-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 100px; /* Adjust the gap between buttons */
+}
+
+td button {
+    background-color: #FF6347; /* Red */
+    color: #FFFFFF; /* White */
+    border: none;
+    padding: 8px 13px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+td button:hover {
+    background-color: #FF0000; /* Darker Red on Hover */
+}

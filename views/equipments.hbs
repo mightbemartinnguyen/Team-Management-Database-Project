@@ -1,0 +1,135 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Equipments</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- 
+Citation for the following function:
+   Date: 2/28/24
+   Adapted from starter code provided by Dr. Curry and Prof. Safonte at Oregon State University
+   Starter code used as a template with variables changed to meet our use case.  Some functions/routes were added/removed for functionality.
+   Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Equipments</h2>
+<table border="3" cellpadding="20" id="equipments-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            {{!-- For just the first row, we print each key of the row object as a header cell
+            so we know what each column means when the page renders --}}
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the playerID, playerName, jerseyNum, height, weight, position, and score, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>
+            <td>{{this.equipmentID}}</td>
+            <td>{{this.type}}</td>
+            <td>{{this.condition}}</td>
+            <td>{{this.numOfType}}</td>
+            <td>{{this.replacementCost}}</td>
+            <td><button onclick="deleteEquipment({{this.equipmentID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_equipment.js"></script>
+
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-equipment-form-ajax">
+        <legend>Add Equipment</legend>
+        <fieldset>
+            <label for="input-type">Equipment Type: *</label>
+            <input type="text" placeholder="Type" name="input-type" id="input-type" required>
+            
+            <label for="input-condition">Condition: *</label>
+            <input type="number" placeholder="100" name="input-condition" id="input-condition" required>
+
+            <label for="input-numOfType">Amount of Equipment: *</label>
+            <input type="text" placeholder="1000" name="input-numOfType" id="input-numOfType" required>
+
+            <label for="input-replacementCost">Replacement Cost: *</label>
+            <input type="text" placeholder="200" name="input-replacementCost" id="input-replacementCost" required>
+
+        </fieldset>
+        <input type="submit" value="Add Equipment">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_equipment.js"></script>
+
+<div id="Buttons">
+    <form id="edit-equipment-form-ajax">
+        <legend>Edit Equipment</legend>
+        <fieldset>
+            <label for="edit-input-oldEquipType">Current Equipment Type: </label>
+            <input type="text" name="edit-input-oldEquipType" id="edit-input-oldEquipType" placeholder="Current Equipment Type" required>
+
+            <label for="edit-input-type">Equipment Type: </label>
+            <input type="text" placeholder="Type" name="edit-input-type" id="edit-input-type" required>
+            
+            <label for="edit-input-condition">Condition: </label>
+            <input type="number" placeholder="100" name="edit-input-condition" id="edit-input-condition" required>
+
+            <label for="edit-input-numOfType">Amount of Equipment: </label>
+            <input type="text" placeholder="1000" name="edit-input-numOfType" id="edit-input-numOfType" required>
+
+            <label for="edit-input-replacementCost">Replacement Cost: </label>
+            <input type="text" placeholder="200" name="edit-input-replacementCost" id="edit-input-replacementCost" required>
+        </fieldset>
+        <input type="submit" value="Edit Equipment">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+<div id="Buttons">
+    <form id="search-equipments-html" method='GET' action='/equipments'>
+        <legend>Search by Equipment Name: </legend>
+        <input type="text" placeholder="Type" name="type" id="input-type-html-search">
+
+        <input type = "submit">
+        <a href="/equipments"><button>Reset Page</button></a>
+    </form>
+</div>
+</div>
+<script src="./js/edit_equipment.js"></script>
+
+</body>
+</html>

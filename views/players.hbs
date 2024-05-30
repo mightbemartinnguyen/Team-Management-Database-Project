@@ -1,0 +1,147 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Players</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- 
+Citation for the following function:
+   Date: 2/28/24
+   Adapted from starter code provided by Dr. Curry and Prof. Safonte at Oregon State University
+   Starter code used as a template with variables changed to meet our use case.  Some functions/routes were added/removed for functionality.
+   Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Players</h2>
+<table border="3" cellpadding="20" id="players-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            {{!-- For just the first row, we print each key of the row object as a header cell
+            so we know what each column means when the page renders --}}
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the playerID, playerName, jerseyNum, height, weight, position, and score, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>
+            <td>{{this.playerID}}</td>
+            <td>{{this.playerName}}</td>
+            <td>{{this.jerseyNum}}</td>
+            <td>{{this.height}}</td>
+            <td>{{this.weight}}</td>
+            <td>{{this.position}}</td>
+            <td>{{this.score}}</td>
+            <td><button onclick="deletePlayer({{this.playerID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_player.js"></script>
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-player-form-ajax">
+        <legend>Add Player</legend>
+        <fieldset>
+            <label for="input-playerName">Name: *</label>
+            <input type="text" placeholder="Enter First and Last" name="input-playerName" id="input-playerName" required>
+            
+            <label for="input-jerseyNum">Jersey Number: *</label>
+            <input type="number" placeholder="Jersey Number" name="input-jerseyNum" id="input-jerseyNum" required>
+
+            <label for="input-height">Height: *</label>
+            <input type="text" placeholder="Height" name="input-height" id="input-height" required>
+
+            <label for="input-weight">Weight: *</label>
+            <input type="number" placeholder="Weight" name="input-weight" id="input-weight" required>
+
+            <label for="input-position">Position: *</label>
+            <input type="text" placeholder="Position" name="input-position" id="input-position" required>
+
+            <label for="input-score">Score: *</label>
+            <input type="number" placeholder="Score" name="input-score" id="input-score" required>
+        </fieldset>
+        <input type="submit" value="Add Player">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_player.js"></script>
+
+<div id="Buttons">
+    <form id="edit-player-form-ajax">
+        <legend>Edit Player</legend>
+        <fieldset>
+            <label for="edit-input-oldPlayerName">Current Player Name: </label>
+            <input type="text" name="edit-input-oldPlayerName" id="edit-input-oldPlayerName" placeholder="Current Player Name" required>
+
+            <label for="edit-input-playerName">Full Name: </label>
+            <input type="text" placeholder="Enter First and Last" name="edit-input-playerName" id="edit-input-playerName" required>
+            
+            <label for="edit-input-jerseyNum">Jersey Number: *</label>
+            <input type="number" placeholder="Jersey Number" name="edit-input-jerseyNum" id="edit-input-jerseyNum" required>
+
+            <label for="edit-input-height">Height: *</label>
+            <input type="text" placeholder="Height" name="edit-input-height" id="edit-input-height" required>
+
+            <label for="edit-input-weight">Weight: *</label>
+            <input type="number" placeholder="Weight" name="edit-input-weight" id="edit-input-weight" required>
+
+            <label for="edit-input-position">Position: *</label>
+            <input type="text" placeholder="Position" name="edit-input-position" id="edit-input-position" required>
+
+            <label for="edit-input-score">Score: *</label>
+            <input type="number" placeholder="Score" name="edit-input-score" id="edit-input-score" required>
+        </fieldset>
+        <input type="submit" value="Edit Player">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+<div id="Buttons">
+    <form id="search-player-html" method='GET' action='/players'>
+        <legend>Search by Player Name: </legend>
+        <input type="text" placeholder="Player Name" name="playerName" id="input-playerName-html-search">
+
+        <input type = "submit">
+        <a href="/players"><button>Reset Page</button></a>
+    </form>
+</div>
+</div>
+<script src="./js/edit_player.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!-- 
+Citation for the following function:
+   Date: 3/18/24
+   Adapted from the OSU CS340 Nodejs starter app step 4, 5, 6, 7, 8
+   Starter code used as a template with variables changed and/or other modifications including the inclusion or exclusion of 
+   functions/routes.
+   Source URL: 
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+   https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+-->
+<header>
+    <h1>Injuries</h1>
+</header>
+<nav class="localNav">
+    <a href="/">Homepage</a>
+    <a href="/players">Players</a>
+    <a href="/equipments">Equipments</a>
+    <a href="/coaches">Coaches</a>
+    <a href="/injuries">Injuries</a>
+    <a href="/playersHaveCoaches">Players have Coaches</a>
+    <a href="/playersHaveInjuries">Players have Injuries</a>
+    <a href="/playersHaveEquipments">Players have Equipments</a>
+</nav>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- 
+Citation for the following function:
+   Date: 3/06/24
+   Adapted from starter code provided by Dr. Curry and Prof. Safonte at Oregon State University
+   Starter code used as a template with variables changed to meet our use case.  Some functions/routes were added/removed for functionality.
+   Source URL: https://github.com/osu-cs340-ecampus/nodejs-starter-app
+-->
+
+{{!-- Create a table --}}
+<h2 class="browse">Browse Injuries</h2>
+<table border="3" cellpadding="20" id="injuries-table">
+
+    {{!-- Header section --}}
+    <thead>
+        <tr>
+            {{!-- For just the first row, we print each key of the row object as a header cell
+            so we know what each column means when the page renders --}}
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the playerID, playerName, jerseyNum, height, weight, position, and score, in order --}}
+        {{#each data}}
+        <tr data-value={{this.id}}>
+            <td>{{this.injuryID}}</td>
+            <td>{{this.injuryName}}</td>
+            <td>{{this.avgRecoveryTime}}</td>
+            <td><button onclick="deleteInjury({{this.injuryID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_injury.js"></script>
+
+<div class="button-gallery">
+<div id="Buttons">
+    <form id="add-injury-form-ajax">
+        <legend>Add Injury</legend>
+        <fieldset>
+            <label for="input-injuryName">Injury Name: *</label>
+            <input type="text" placeholder="Injury Name" name="input-injuryName" id="input-injuryName" required>
+            
+            <label for="input-avgRecoveryTime">Average Recovery Time: *</label>
+            <input type="float" placeholder="Average Recovery Time" name="input-avgRecoveryTime" id="input-avgRecoveryTime" required>
+
+        </fieldset>
+        <input type="submit" value="Add Injury">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_injury.js"></script>
+
+<div id="Buttons">
+    <form id="edit-injury-form-ajax">
+        <legend>Edit Injury</legend>
+        <fieldset>
+            <label for="edit-input-oldInjuryName">Current Injury Name: *</label>
+            <input type="text" name="edit-input-oldInjuryName" id="edit-input-oldInjuryName" placeholder="Current Injury Name" required>
+            <label for="edit-input-injuryName">Injury Name: *</label>
+            <input type="text" placeholder="Injury Name" name="edit-input-injuryName" id="edit-input-injuryName" required>
+            
+            <label for="edit-input-avgRecoveryTime">Average Recovery Time: *</label>
+            <input type="float" placeholder="Average Recovery Time" name="edit-input-avgRecoveryTime" id="edit-input-avgRecoveryTime" required>
+
+        </fieldset>
+        <input type="submit" value="Edit Injury">
+        <input type="reset" value="Reset Form">
+    </form>
+</div>
+<div id="Buttons">
+    <form id="search-injuries-html" method='GET' action='/injuries'>
+        <legend>Search by Injury Name: </legend>
+        <input type="text" placeholder="Injury Name" name="injuryName" id="input-injuryName-html-search">
+
+        <input type = "submit">
+        <a href="/injuries"><button>Reset Page</button></a>
+    </form>
+</div>
+</div>
+<script src="./js/edit_injury.js"></script>
+
+</body>
+</html>
