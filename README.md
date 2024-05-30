@@ -2,44 +2,15 @@
 
 Project created by Quinn Hoffman and Martin Nguyen as the final project for the CS340 Introduction to Database course for Winter 2024.
 
-## Executive Summary
-
-  Our Project was initially planned with the idea of creating a system for managing player,
-coach, and equipment data for the OSU football team, we have gone through multiple evolutions
-from the initial proposal. We initially planned to have 5 entities, Players, Coaches, Injuries,
-Equipment, and a now-deleted Games entity. The first round of peer reviews had us add the
-count attributes to Coaches, Injuries, and Equipment. We also fixed typos and added some details
-in the outline.
-  By the time we reached our second draft, we decided to remove the Games entity, finding
-it a bit redundant. We also split Equipments into 2 entities, an Equipments entity and an
-EquipmentDetails entity, which shared a 1:M relationship to record each piece of equipment and
-the specifics of those pieces. We again added more attributes and fixed more mistakes in the
-outline. The EquipmentDetails entity would later be removed since this caused a partial
-dependency between players and equipment, but we would keep the 1:M relationship.
-  For our third draft and peer reviews, the only major changes we made were to change the
-relationship between the Players and Equipments tables to an M:M relationship, this time adding
-some modifications to the intersection table to avoid a partial dependency that caused us to
-remove the table in the first place. Subsequent peer reviews would focus more on the refinement
-of the database and user interface, with the main structure of the project being mainly set in stone
-by now. Some improvements would include the intersection table to the outline, enhancements to
-the SQL files, or small QOL updates to the user interface. Reflecting on the peer review process,
-it’s clear that the feedback helped find blind spots and areas of improvement, especially when we
-were bouncing around several ideas about which entities to use .
-
 ## Overview
 
-  Managing large groups of people can be a costly challenge for companies. The
-Oregon State University football team has 99 players on its current roster, 34 coaches, 6
-types of equipment with over 1188 pieces to be divided among the players, and 13
-injuries of varying severity. Therefore, we propose a database-driven web application that
-management can use to keep track of Players, Coaches, Equipment, and Injuries. This
-system allows management to easily access information on their players: who they’re
-coached by, what games they played, what equipment they have been assigned, and the
-injuries that they have. With this database, it will help streamline, keep track of players
-and their equipment. It will be easier to manage the roster of coaches and players, track
-down missing pieces of gear that cost hundreds of dollars, and show what injuries they
-have.
+  Managing the OSU football team's 99 players, 34 coaches, 1188 pieces of equipment, and 13 injuries is challenging. Our database-driven web application allows management to track Players, Coaches, Equipment, and Injuries efficiently. This system streamlines data access, helps manage the roster, tracks gear, and monitors injuries.
 
+### Technologies Used
+- JavaScript
+- HTML
+- CSS
+- SQL
 
 ## Database Outline
 
@@ -191,10 +162,6 @@ Intersection table between Players and Injuries:
 | 2        | 3           |
 | 3        | 3           |
 | 4        | 4           |
-
-## URL to HTML
-
-[http://flip3.engr.oregonstate.edu:2121/](http://flip3.engr.oregonstate.edu:2121/)
 
 ## Screenshots of UI
 
