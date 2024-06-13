@@ -1,4 +1,4 @@
-# Team Management Database Project
+# Team Management Database ProjecT
 
 Project created by Quinn Hoffman and Martin Nguyen as the final project for the CS340 Introduction to Database course for Winter 2024.
 
