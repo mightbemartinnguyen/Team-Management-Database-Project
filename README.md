@@ -4,7 +4,7 @@ Project created by Quinn Hoffman and Martin Nguyen as the final project for the 
 
 ## Overview
 
-  Managing the OSU football team's 99 players, 34 coaches, 1188 pieces of equipment, and 13 injuries is challenging. Our database-driven web application allows management to track Players, Coaches, Equipment, and Injuries efficiently. This system streamlines data access, helps manage the roster, tracks gear, and monitors injuries.
+Managing the OSU football team's 99 players, 34 coaches, 1188 pieces of equipment, and 13 injuries is challenging. Our database-driven web application allows management to track Players, Coaches, Equipment, and Injuries efficiently. This system streamlines data access, helps manage the roster, tracks gear, and monitors injuries.
 
 ### Technologies Used
 - JavaScript
